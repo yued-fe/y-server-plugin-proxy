@@ -6,7 +6,8 @@
   "description": "y-server api proxy/mock plugin",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "lib/"
   ],
   "repository": {
     "type": "git",
