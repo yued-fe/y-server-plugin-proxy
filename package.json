@@ -8,6 +8,10 @@
   "files": [
     "index.js"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yued-fe/y-server-plugin-apm.git"
+  },
   "scripts": {
     "test": "y-server --config ./test/y-server.config.js --hot"
   },
