@@ -1,0 +1,21 @@
+{
+  "name": "y-server-plugin-apm",
+  "version": "0.0.1",
+  "author": "SmadeyZhang",
+  "license": "MIT",
+  "description": "y-server api proxy/mock plugin",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "y-server --config ./test/y-server.config.js --hot"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express-request-proxy": "^2.0.0"
+  },
+  "devDependencies": {
+    "y-server": "~0.0.1"
+  }
+}
