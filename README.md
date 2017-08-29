@@ -1,11 +1,11 @@
-# y-server-plugin-apm
+# y-server-plugin-proxy
 
-y-server-plugin-apm is a [y-server](https://github.com/yued-fe/y-server) plugin to proxy/mock api.
+y-server-plugin-proxy is a [y-server](https://github.com/yued-fe/y-server) plugin to proxy request.
 
 ## Install
 
 ```bash
-npm install y-server-plugin-apm
+npm install y-server-plugin-proxy
 ```
 
 ## Usage
@@ -14,23 +14,17 @@ npm install y-server-plugin-apm
 const path = require('path');
 
 const yServer = require('y-server');
-const apmPlugin = require('y-server-plugin-apm');
+const proxyPlugin = require('y-server-plugin-proxy');
 
 yServer({
   plugins: [
-    apmPlugin({
-      apiPaths: ['/majax/*'],
-
+    proxyPlugin({
+      proxyPaths: ['/majax/*'],
       proxyServer: 'http://m.readnovel.com',
       proxyOptions: {
         query: {},
         headers: {},
       },
-
-      mockEnable: true,
-      mockDir: path.join(__dirname, './json'),
-      mockResultResolver: path.join(__dirname, './json/resultResolver.js'),
-      throwMockError: true,
     }),
   ],
 });
@@ -38,13 +32,9 @@ yServer({
 
 ## Notes
 
-* `apiPaths` is the Array which will be proxy/mock.
+* `proxyPaths` is the Array which will be proxy.
 * `proxyServer` is the proxy server.
 * `proxyOptions` is the proxy options (see [express-request-proxy](https://github.com/4front/express-request-proxy)).
-* `mockEnable` is the mock switch.
-* `mockDir` is the base directory of mock data.
-* `mockResultResolver` is the handler of mock data.
-* `throwMockError` is the switch of throw/proxy on mock error.
 
 ## License
 

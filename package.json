@@ -1,9 +1,9 @@
 {
-  "name": "y-server-plugin-apm",
+  "name": "y-server-plugin-proxy",
   "version": "0.0.1",
   "author": "SmadeyZhang",
   "license": "MIT",
-  "description": "y-server api proxy/mock plugin",
+  "description": "y-server proxy plugin",
   "main": "index.js",
   "files": [
     "index.js",
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yued-fe/y-server-plugin-apm.git"
+    "url": "git+https://github.com/yued-fe/y-server-plugin-proxy.git"
   },
   "scripts": {
     "test": "y-server --config ./test/y-server.config.js --hot"
@@ -21,6 +21,6 @@
     "express-request-proxy": "^2.0.0"
   },
   "devDependencies": {
-    "y-server": "~0.0.1"
+    "y-server": "~0.0.2"
   }
 }

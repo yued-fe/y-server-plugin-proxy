@@ -1,4 +1,4 @@
 module.exports = function (d) {
-  d.$resolved = true;
+  d.$mock = true;
   return d;
 };
