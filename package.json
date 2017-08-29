@@ -6,8 +6,7 @@
   "description": "y-server proxy plugin",
   "main": "index.js",
   "files": [
-    "index.js",
-    "lib/"
+    "index.js"
   ],
   "repository": {
     "type": "git",
@@ -21,6 +20,7 @@
     "express-request-proxy": "^2.0.0"
   },
   "devDependencies": {
-    "y-server": "~0.0.2"
+    "y-server": "~0.0.2",
+    "y-server-plugin-mock": "0.0.1"
   }
 }

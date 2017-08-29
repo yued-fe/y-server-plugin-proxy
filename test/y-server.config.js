@@ -2,7 +2,8 @@
 
 const path = require('path');
 
-const mockPlugin = require('../../y-server-plugin-mock/index.js');
+const mockPlugin = require('y-server-plugin-mock');
+
 const proxyPlugin = require('../index.js');
 
 module.exports = {
