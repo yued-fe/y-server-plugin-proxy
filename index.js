@@ -3,7 +3,21 @@ require('colors');
 
 const url = require('url');
 
-const proxy = require('express-request-proxy');
+const proxy = require('http-proxy-middleware');
+
+/**
+ * 请求地址修复中间件
+ * SwitchyOmega 将 localsite.com 指向到 locahost:8080 时得到的 url 包含 host,
+ * http-proxy-middleware 的 pathRewrite 的 '^/xx' 正则需要 req.originalUrl 不能包含 host
+ * 代理之前需要调用此方法对 req.originalUrl 进行修复
+ * @param {Request} req 请求实例
+ * @param {Resopnse} res 响应实例
+ * @param {Function} next 下一步回调
+ */
+function reqUrlFixMiddleware(req, res, next) {
+  req.originalUrl = url.parse(req.originalUrl).path;
+  next();
+}
 
 /**
  * 请求代理插件
@@ -32,17 +46,21 @@ module.exports = function (options) {
     proxyPaths.forEach(function (routePath) {
       console.log('[Proxy]:'.green, `"${routePath}" => "${proxyServer}"`);
 
-      app.all(routePath, function (req, res, next) {
+      app.all(routePath, reqUrlFixMiddleware, function (req, res, next) {
         if (res.sendMock) {
           res.sendMock().catch(next);
         } else {
           const proxyOptions = Object.assign({
-            url: `${proxyServer}${req.path}`,
+            target: proxyServer,
+            changeOrigin: true,
+            logLevel: 'warn',
           }, defaultProxyOptions);
+
+          req.query = Object.assign({}, proxyOptions.query, req.query);
 
           // 打 log
           const urlObj = url.parse(`${proxyServer}${req.path}`, true, true);
-          urlObj.query = Object.assign({}, proxyOptions.query, req.query);
+          urlObj.query = req.query;
           console.log('[Proxy]:'.green, `"${url.format(urlObj)}"`);
 
           proxy(proxyOptions)(req, res, next);

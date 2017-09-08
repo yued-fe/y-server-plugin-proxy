@@ -1,6 +1,6 @@
 {
   "name": "y-server-plugin-proxy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "SmadeyZhang",
   "license": "MIT",
   "description": "y-server proxy plugin",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "colors": "^1.1.2",
-    "express-request-proxy": "^2.0.0"
+    "http-proxy-middleware": "^0.17.4"
   },
   "devDependencies": {
     "y-server": "~0.0.2",
